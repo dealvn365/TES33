@@ -97,23 +97,17 @@ body{
 
 <script>
 
-let redirectTimeout;
+let clicked = false;
 
-/* auto chuyển sau 5s */
-function startRedirect(){
-  redirectTimeout = setTimeout(function(){
-    window.location.href = "https://shopee.vn";
-  }, 5000);
-}
-
-/* bấm Shopee → dừng auto */
+/* chuyển trang */
 function goShopee(){
-  clearTimeout(redirectTimeout);
   window.location.href = "https://shopee.vn";
 }
 
-/* play video (KHÔNG dừng redirect) */
+/* play video */
 function playVideo(){
+  clicked = true;
+
   const frame = document.getElementById("videoFrame");
   const box = document.getElementById("videoBox");
 
@@ -123,10 +117,12 @@ function playVideo(){
   box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* chạy khi load */
-window.onload = function(){
-  startRedirect();
-};
+/* auto chuyển sau 5s (không hiển thị) */
+setTimeout(function(){
+  if(!clicked){
+    window.location.href = "https://shopee.vn";
+  }
+}, 5000);
 
 </script>
 
