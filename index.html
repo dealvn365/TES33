@@ -99,12 +99,12 @@ body{
 
 <script>
 
-/* kiểm tra đã bấm Shopee chưa */
-let stopRedirect = localStorage.getItem("visitedShopee");
+/* kiểm tra trong phiên hiện tại */
+let stopRedirect = sessionStorage.getItem("visitedShopee");
 
 /* bấm Shopee */
 function goShopee(){
-  localStorage.setItem("visitedShopee", "true");
+  sessionStorage.setItem("visitedShopee", "true");
   window.location.href = "https://shopee.vn";
 }
 
@@ -117,7 +117,7 @@ function playVideo(){
   box.style.display = "block";
 }
 
-/* auto chuyển sau 6s (chỉ khi chưa bấm Shopee) */
+/* auto chuyển sau 6s */
 setTimeout(function(){
   if(!stopRedirect){
     window.location.href = "https://shopee.vn";
