@@ -6,45 +6,51 @@
 
 <title>🎬 Xem phim full miễn phí</title>
 
-<meta property="og:title" content="🎬 Xem phim full miễn phí">
-<meta property="og:description" content="Click để xem phim cực hay 🔥">
-<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
-<meta property="og:type" content="website">
-
 <style>
 body{
   margin:0;
-  background:#000;
-  color:white;
+  background:#111;
   font-family:sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
+
+/* CARD */
+.card{
+  width:95%;
+  max-width:400px;
+  background:#1c1c1c;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
   text-align:center;
 }
 
-/* giảm khoảng cách dưới ảnh */
-.top-image{
-  padding:10px 10px 0;
-}
-
-.top-image img{
-  width:95%;
-  max-width:900px;
-  border-radius:15px;
-  box-shadow:0 0 30px rgba(0,0,0,0.6);
+/* ẢNH */
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
   cursor:pointer;
 }
 
-/* kéo nút lên sát ảnh */
-.bottom-controls{
-  padding:10px 10px 20px;
-  margin-top:-10px;
+/* NỘI DUNG */
+.card-body{
+  padding:15px;
 }
 
+/* NÚT */
 .btn{
-  padding:15px 30px;
-  margin:5px;
-  font-size:18px;
+  display:block;
+  width:100%;
+  padding:12px;
+  margin-top:10px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
+  font-size:16px;
   cursor:pointer;
   background:red;
   color:white;
@@ -52,20 +58,19 @@ body{
 }
 
 .btn:hover{
-  transform:scale(1.05);
   background:#ff2e2e;
 }
 
+/* VIDEO */
 .video-container{
   display:none;
-  margin-top:15px;
+  margin-top:10px;
 }
 
 .video-container iframe{
-  width:95%;
-  max-width:900px;
-  height:500px;
-  border:0;
+  width:100%;
+  height:220px;
+  border:none;
   border-radius:15px;
 }
 </style>
@@ -74,58 +79,47 @@ body{
 
 <body>
 
-<div class="top-image">
+<div class="card">
+
   <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
-</div>
 
-<div class="bottom-controls">
+  <div class="card-body">
 
-  <button class="btn" onclick="goShopee()">
-    👉 Ghé Shopee Ủng Hộ
-  </button>
+    <button class="btn" onclick="playVideo()">▶ Xem Phim</button>
 
-  <button class="btn" onclick="playVideo()">
-    ▶ Xem Phim Full
-  </button>
+    <button class="btn" onclick="goShopee()">👉 Ủng Hộ Shopee</button>
 
-  <div class="video-container" id="videoBox">
-    <iframe id="videoFrame"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+    <div class="video-container" id="videoBox">
+      <iframe id="videoFrame" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
   </div>
 
 </div>
 
 <script>
-
 let clicked = false;
 
-/* chuyển trang */
 function goShopee(){
   window.location.href = "https://shopee.vn";
 }
 
-/* play video */
 function playVideo(){
   clicked = true;
 
   const frame = document.getElementById("videoFrame");
   const box = document.getElementById("videoBox");
 
-  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
   box.style.display = "block";
-
-  box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* auto chuyển sau 20s */
+/* auto chuyển */
 setTimeout(function(){
   if(!clicked){
     window.location.href = "https://shopee.vn";
   }
 }, 20000);
-
 </script>
 
 </body>
