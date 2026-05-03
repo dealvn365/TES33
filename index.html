@@ -1,4 +1,4 @@
-```html id="fixbtnfull"
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -13,38 +13,54 @@ body{
   background:#000;
   font-family:sans-serif;
   color:white;
+  display:flex;
+  justify-content:center;
+}
+
+/* CARD */
+.card{
+  width:100%;
+  max-width:900px;
+  margin:15px;
+  background:#111;
+  border-radius:15px;
+  overflow:hidden;
+  padding:10px;
+}
+
+/* HÀNG TRÊN */
+.top-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 /* ẢNH */
-.top-image img{
-  width:100%;
-  max-height:60vh;   /* 🔥 chặn ảnh quá cao */
-  object-fit:cover;
-  display:block;
+.thumb{
+  flex:2;
 }
 
-/* NÚT - ép luôn hiện */
-.bottom-controls{
-  position:fixed;      /* 🔥 luôn nằm dưới màn hình */
-  bottom:0;
-  left:0;
+.thumb img{
   width:100%;
-  display:flex;
-  gap:10px;
-  padding:10px;
-  background:#000;
-  box-shadow:0 -5px 20px rgba(0,0,0,0.7);
+  border-radius:10px;
 }
 
-/* BUTTON */
-.btn{
+/* NÚT */
+.buttons{
   flex:1;
-  padding:15px;
-  font-size:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.btn{
+  padding:12px;
+  font-size:14px;
   border:none;
-  border-radius:30px;
+  border-radius:20px;
   font-weight:bold;
   color:white;
+  cursor:pointer;
 }
 
 /* Shopee */
@@ -52,20 +68,22 @@ body{
   background:#ff5722;
 }
 
-/* Play */
+/* Xem phim */
 .btn-play{
   background:#e50914;
 }
 
 /* VIDEO */
-.video-container{
+.video{
+  margin-top:15px;
   display:none;
-  padding:10px;
 }
 
-.video-container iframe{
+.video iframe{
   width:100%;
   height:300px;
+  border-radius:10px;
+  border:0;
 }
 </style>
 
@@ -73,41 +91,55 @@ body{
 
 <body>
 
-<div class="top-image">
-  <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
-</div>
+<div class="card">
 
-<div class="video-container" id="videoBox">
-  <iframe id="videoFrame" allowfullscreen></iframe>
-</div>
+  <!-- HÀNG TRÊN -->
+  <div class="top-row">
 
-<!-- 🔥 NÚT LUÔN HIỆN -->
-<div class="bottom-controls">
-  <button class="btn btn-shop" onclick="goShopee()">🛒 Shopee</button>
-  <button class="btn btn-play" onclick="playVideo()">▶ Xem phim</button>
+    <div class="thumb">
+      <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-shop" onclick="goShopee()">🛒 Shopee</button>
+      <button class="btn btn-play" onclick="playVideo()">▶ Xem phim</button>
+    </div>
+
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video" id="videoBox">
+    <iframe id="videoFrame" allowfullscreen></iframe>
+  </div>
+
 </div>
 
 <script>
 
 let redirectTimeout;
 
+/* auto chuyển */
 function startRedirect(){
   redirectTimeout = setTimeout(function(){
     window.location.href = "https://shopee.vn";
   }, 5000);
 }
 
+/* Shopee */
 function goShopee(){
   clearTimeout(redirectTimeout);
   window.location.href = "https://shopee.vn";
 }
 
+/* Xem phim */
 function playVideo(){
   const frame = document.getElementById("videoFrame");
   const box = document.getElementById("videoBox");
 
   frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
   box.style.display = "block";
+
+  box.scrollIntoView({ behavior: "smooth" });
 }
 
 window.onload = startRedirect;
