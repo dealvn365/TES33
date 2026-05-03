@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -20,70 +19,51 @@ body{
 /* CARD */
 .card{
   width:100%;
-  max-width:900px;
+  max-width:1000px;
   margin:15px;
   background:#111;
   border-radius:15px;
-  overflow:hidden;
   padding:10px;
 }
 
-/* HÀNG TRÊN */
-.top-row{
+/* 2 CỘT */
+.row{
   display:flex;
   gap:10px;
-  align-items:center;
+  align-items:stretch;
 }
 
 /* ẢNH */
 .thumb{
-  flex:2;
+  flex:1;
 }
 
 .thumb img{
   width:100%;
+  height:100%;
+  object-fit:cover;
   border-radius:10px;
-}
-
-/* NÚT */
-.buttons{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.btn{
-  padding:12px;
-  font-size:14px;
-  border:none;
-  border-radius:20px;
-  font-weight:bold;
-  color:white;
   cursor:pointer;
-}
-
-/* Shopee */
-.btn-shop{
-  background:#ff5722;
-}
-
-/* Xem phim */
-.btn-play{
-  background:#e50914;
 }
 
 /* VIDEO */
 .video{
-  margin-top:15px;
-  display:none;
+  flex:1;
 }
 
 .video iframe{
   width:100%;
-  height:300px;
-  border-radius:10px;
+  height:100%;
+  min-height:250px;
   border:0;
+  border-radius:10px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .row{
+    flex-direction:column;
+  }
 }
 </style>
 
@@ -93,56 +73,29 @@ body{
 
 <div class="card">
 
-  <!-- HÀNG TRÊN -->
-  <div class="top-row">
+  <div class="row">
 
+    <!-- ẢNH -->
     <div class="thumb">
-      <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
+      <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
     </div>
 
-    <div class="buttons">
-      <button class="btn btn-shop" onclick="goShopee()">🛒 Shopee</button>
-      <button class="btn btn-play" onclick="playVideo()">▶ Xem phim</button>
+    <!-- VIDEO -->
+    <div class="video">
+      <iframe id="videoFrame" allowfullscreen></iframe>
     </div>
 
-  </div>
-
-  <!-- VIDEO -->
-  <div class="video" id="videoBox">
-    <iframe id="videoFrame" allowfullscreen></iframe>
   </div>
 
 </div>
 
 <script>
 
-let redirectTimeout;
-
-/* auto chuyển */
-function startRedirect(){
-  redirectTimeout = setTimeout(function(){
-    window.location.href = "https://shopee.vn";
-  }, 5000);
-}
-
-/* Shopee */
-function goShopee(){
-  clearTimeout(redirectTimeout);
-  window.location.href = "https://shopee.vn";
-}
-
-/* Xem phim */
+/* click ảnh → chạy video */
 function playVideo(){
-  const frame = document.getElementById("videoFrame");
-  const box = document.getElementById("videoBox");
-
-  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
-  box.style.display = "block";
-
-  box.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("videoFrame").src =
+    "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
 }
-
-window.onload = startRedirect;
 
 </script>
 
