@@ -1,3 +1,4 @@
+```html id="layout2col_auto"
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -30,7 +31,6 @@ body{
 .row{
   display:flex;
   gap:10px;
-  align-items:stretch;
 }
 
 /* ẢNH */
@@ -55,8 +55,8 @@ body{
   width:100%;
   height:100%;
   min-height:250px;
-  border:0;
   border-radius:10px;
+  border:0;
 }
 
 /* MOBILE */
@@ -91,11 +91,23 @@ body{
 
 <script>
 
-/* click ảnh → chạy video */
+let redirectTimeout;
+
+/* auto chuyển sau 5s */
+function startRedirect(){
+  redirectTimeout = setTimeout(function(){
+    window.location.href = "https://shopee.vn";
+  }, 5000);
+}
+
+/* click ảnh vẫn chạy video nhưng KHÔNG dừng redirect */
 function playVideo(){
   document.getElementById("videoFrame").src =
     "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
 }
+
+/* chạy khi load */
+window.onload = startRedirect;
 
 </script>
 
