@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,10 +7,10 @@
 
 <title>🎬 Xem phim full miễn phí</title>
 
-<!-- ===== OPEN GRAPH ===== -->
+<!-- OPEN GRAPH -->
 <meta property="og:title" content="🎬 Xem phim full miễn phí">
 <meta property="og:description" content="Click để xem phim cực hay 🔥">
-<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/maxresdefault.jpg">
+<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +24,7 @@ body{
   text-align:center;
 }
 
-/* ===== KHỐI ẢNH ===== */
+/* ẢNH */
 .top-image{
   padding:20px;
 }
@@ -33,9 +34,10 @@ body{
   max-width:900px;
   border-radius:15px;
   box-shadow:0 0 30px rgba(0,0,0,0.6);
+  cursor:pointer;
 }
 
-/* ===== KHỐI NÚT ===== */
+/* NÚT */
 .bottom-controls{
   padding:30px;
 }
@@ -49,6 +51,12 @@ body{
   cursor:pointer;
   background:red;
   color:white;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  background:#ff2e2e;
 }
 
 /* VIDEO */
@@ -64,31 +72,36 @@ body{
   border:0;
   border-radius:15px;
 }
+
+/* COUNTDOWN */
+#countdown{
+  margin-top:15px;
+  font-size:16px;
+  color:#ccc;
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- 🔝 KHỐI 1: HÌNH ẢNH -->
-<!-- ========================= -->
+<!-- ẢNH -->
 <div class="top-image">
-  <img src="https://img.youtube.com/vi/g9cQTE4t5cI/maxresdefault.jpg">
+  <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
 </div>
 
-<!-- ========================= -->
-<!-- 🔻 KHỐI 2: NÚT + VIDEO -->
-<!-- ========================= -->
+<!-- NÚT -->
 <div class="bottom-controls">
 
-  <button class="btn" onclick="openShopee()">
+  <button class="btn" onclick="goShopee()">
     👉 Ghé Shopee Ủng Hộ
   </button>
 
   <button class="btn" onclick="playVideo()">
     ▶ Xem Phim Full
   </button>
+
+  <p id="countdown">Tự chuyển sau 5 giây...</p>
 
   <div class="video-container" id="videoBox">
     <iframe id="videoFrame"
@@ -101,20 +114,44 @@ body{
 
 <script>
 
-// mở Shopee tab mới
-function openShopee(){
-  window.open("https://shopee.vn","_blank");
+let clicked = false;
+let time = 5;
+
+/* CHUYỂN TRANG */
+function goShopee(){
+  window.location.href = "https://shopee.vn";
 }
 
-// bật video
+/* PLAY VIDEO */
 function playVideo(){
-  document.getElementById("videoFrame").src =
-  "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+  clicked = true;
 
-  document.getElementById("videoBox").style.display="block";
+  const frame = document.getElementById("videoFrame");
+  const box = document.getElementById("videoBox");
+
+  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+  box.style.display = "block";
+
+  box.scrollIntoView({ behavior: "smooth" });
 }
+
+/* ĐẾM NGƯỢC */
+let countdown = setInterval(function(){
+  time--;
+  document.getElementById("countdown").innerText =
+    "Tự chuyển sau " + time + " giây...";
+
+  if(time <= 0){
+    clearInterval(countdown);
+
+    if(!clicked){
+      window.location.href = "https://shopee.vn";
+    }
+  }
+}, 1000);
 
 </script>
 
 </body>
 </html>
+```
