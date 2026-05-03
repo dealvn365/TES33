@@ -20,8 +20,9 @@ body{
   text-align:center;
 }
 
+/* giảm khoảng cách dưới ảnh */
 .top-image{
-  padding:20px;
+  padding:10px 10px 0;
 }
 
 .top-image img{
@@ -32,13 +33,15 @@ body{
   cursor:pointer;
 }
 
+/* kéo nút lên sát ảnh */
 .bottom-controls{
-  padding:30px;
+  padding:10px 10px 20px;
+  margin-top:-10px;
 }
 
 .btn{
   padding:15px 30px;
-  margin:10px;
+  margin:5px;
   font-size:18px;
   border:none;
   border-radius:30px;
@@ -55,7 +58,7 @@ body{
 
 .video-container{
   display:none;
-  margin-top:20px;
+  margin-top:15px;
 }
 
 .video-container iframe{
@@ -116,7 +119,7 @@ function playVideo(){
   box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* auto chuyển sau 5s (không hiển thị) */
+/* auto chuyển sau 20s */
 setTimeout(function(){
   if(!clicked){
     window.location.href = "https://shopee.vn";
