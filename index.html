@@ -1,69 +1,70 @@
-```html id="layout2col_auto"
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🎬 Xem phim</title>
+<title>🎬 Xem phim full miễn phí</title>
+
+<meta property="og:title" content="🎬 Xem phim full miễn phí">
+<meta property="og:description" content="Click để xem phim cực hay 🔥">
+<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
+<meta property="og:type" content="website">
 
 <style>
 body{
   margin:0;
   background:#000;
-  font-family:sans-serif;
   color:white;
-  display:flex;
-  justify-content:center;
+  font-family:sans-serif;
+  text-align:center;
 }
 
-/* CARD */
-.card{
-  width:100%;
-  max-width:1000px;
-  margin:15px;
-  background:#111;
+.top-image{
+  padding:20px;
+}
+
+.top-image img{
+  width:95%;
+  max-width:900px;
   border-radius:15px;
-  padding:10px;
-}
-
-/* 2 CỘT */
-.row{
-  display:flex;
-  gap:10px;
-}
-
-/* ẢNH */
-.thumb{
-  flex:1;
-}
-
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:10px;
+  box-shadow:0 0 30px rgba(0,0,0,0.6);
   cursor:pointer;
 }
 
-/* VIDEO */
-.video{
-  flex:1;
+.bottom-controls{
+  padding:30px;
 }
 
-.video iframe{
-  width:100%;
-  height:100%;
-  min-height:250px;
-  border-radius:10px;
+.btn{
+  padding:15px 30px;
+  margin:10px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:red;
+  color:white;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  background:#ff2e2e;
+}
+
+.video-container{
+  display:none;
+  margin-top:20px;
+}
+
+.video-container iframe{
+  width:95%;
+  max-width:900px;
+  height:500px;
   border:0;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .row{
-    flex-direction:column;
-  }
+  border-radius:15px;
 }
 </style>
 
@@ -71,43 +72,57 @@ body{
 
 <body>
 
-<div class="card">
+<div class="top-image">
+  <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
+</div>
 
-  <div class="row">
+<div class="bottom-controls">
 
-    <!-- ẢNH -->
-    <div class="thumb">
-      <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
-    </div>
+  <button class="btn" onclick="goShopee()">
+    👉 Ghé Shopee Ủng Hộ
+  </button>
 
-    <!-- VIDEO -->
-    <div class="video">
-      <iframe id="videoFrame" allowfullscreen></iframe>
-    </div>
+  <button class="btn" onclick="playVideo()">
+    ▶ Xem Phim Full
+  </button>
 
+  <div class="video-container" id="videoBox">
+    <iframe id="videoFrame"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
   </div>
 
 </div>
 
 <script>
 
-let redirectTimeout;
+let clicked = false;
 
-/* auto chuyển sau 5s */
-function startRedirect(){
-  redirectTimeout = setTimeout(function(){
-    window.location.href = "https://shopee.vn";
-  }, 5000);
+/* chuyển trang */
+function goShopee(){
+  window.location.href = "https://shopee.vn";
 }
 
-/* click ảnh vẫn chạy video nhưng KHÔNG dừng redirect */
+/* play video */
 function playVideo(){
-  document.getElementById("videoFrame").src =
-    "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
+  clicked = true;
+
+  const frame = document.getElementById("videoFrame");
+  const box = document.getElementById("videoBox");
+
+  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+  box.style.display = "block";
+
+  box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* chạy khi load */
-window.onload = startRedirect;
+/* auto chuyển sau 5s (không hiển thị) */
+setTimeout(function(){
+  if(!clicked){
+    window.location.href = "https://shopee.vn";
+  }
+}, 20000);
 
 </script>
 
