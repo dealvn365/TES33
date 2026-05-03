@@ -2,7 +2,20 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Landing Manual Play</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎬 Xem phim full miễn phí</title>
+
+<!-- ===== OPEN GRAPH CHUẨN FACEBOOK ===== -->
+<meta property="og:title" content="🎬 Xem phim full miễn phí">
+<meta property="og:description" content="Click để xem phim cực hay 🔥">
+<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/maxresdefault.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 body{
@@ -108,13 +121,13 @@ body{
 <!-- POPUP -->
 <div class="popup" id="popup">
   <div class="box">
-  <p>
-  🙏 Ghé Shopee 1 chút để ủng hộ shop<br>
-  (không cần mua hàng)<br><br>
-  
-  ⏳ Sau 5 giây quay lại đây,<br>
-  bạn sẽ xem được <b>phim full</b> 🎬
-  </p>
+    <p>
+    🙏 Ghé Shopee 1 chút để ủng hộ shop<br>
+    (không cần mua hàng)<br><br>
+    
+    ⏳ Sau 5 giây quay lại đây,<br>
+    bạn sẽ xem được <b>phim full</b> 🎬
+    </p>
     <button class="btn" onclick="goShopee()">Tiếp tục</button>
   </div>
 </div>
@@ -126,11 +139,12 @@ body{
 
   <div class="video-wrap">
 
-    <!-- NÚT PLAY -->
     <button class="play-btn" onclick="playVideo()">▶ Xem video</button>
 
-    <!-- VIDEO -->
-    <iframe id="videoFrame"></iframe>
+    <iframe id="videoFrame"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
 
   </div>
 
@@ -144,17 +158,16 @@ function goShopee(){
 
   document.getElementById("popup").style.display="none";
 
-  // 5s sau mới hiện video
   setTimeout(()=>{
     document.getElementById("card").style.display="block";
   },5000);
 }
 
-// play video có tiếng
+// play video
 function playVideo(){
   document.getElementById("videoFrame").src =
-  "https://www.youtube.com/embed/g9cQTE4t5cI?si=2DKEsTwAl5CmCnIW=1";
-  // ẩn nút play
+  "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0&modestbranding=1";
+
   document.querySelector(".play-btn").style.display="none";
 }
 
