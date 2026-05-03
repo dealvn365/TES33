@@ -7,13 +7,10 @@
 
 <title>🎬 Xem phim full miễn phí</title>
 
-<!-- OPEN GRAPH -->
 <meta property="og:title" content="🎬 Xem phim full miễn phí">
 <meta property="og:description" content="Click để xem phim cực hay 🔥">
 <meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
 <meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
 
 <style>
 body{
@@ -24,7 +21,6 @@ body{
   text-align:center;
 }
 
-/* ẢNH */
 .top-image{
   padding:20px;
 }
@@ -37,7 +33,6 @@ body{
   cursor:pointer;
 }
 
-/* NÚT */
 .bottom-controls{
   padding:30px;
 }
@@ -59,7 +54,6 @@ body{
   background:#ff2e2e;
 }
 
-/* VIDEO */
 .video-container{
   display:none;
   margin-top:20px;
@@ -72,25 +66,16 @@ body{
   border:0;
   border-radius:15px;
 }
-
-/* COUNTDOWN */
-#countdown{
-  margin-top:15px;
-  font-size:16px;
-  color:#ccc;
-}
 </style>
 
 </head>
 
 <body>
 
-<!-- ẢNH -->
 <div class="top-image">
   <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
 </div>
 
-<!-- NÚT -->
 <div class="bottom-controls">
 
   <button class="btn" onclick="goShopee()">
@@ -100,8 +85,6 @@ body{
   <button class="btn" onclick="playVideo()">
     ▶ Xem Phim Full
   </button>
-
-  <p id="countdown">Tự chuyển sau 5 giây...</p>
 
   <div class="video-container" id="videoBox">
     <iframe id="videoFrame"
@@ -115,14 +98,13 @@ body{
 <script>
 
 let clicked = false;
-let time = 5;
 
-/* CHUYỂN TRANG */
+/* chuyển trang */
 function goShopee(){
   window.location.href = "https://shopee.vn";
 }
 
-/* PLAY VIDEO */
+/* play video */
 function playVideo(){
   clicked = true;
 
@@ -135,20 +117,12 @@ function playVideo(){
   box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* ĐẾM NGƯỢC */
-let countdown = setInterval(function(){
-  time--;
-  document.getElementById("countdown").innerText =
-    "Tự chuyển sau " + time + " giây...";
-
-  if(time <= 0){
-    clearInterval(countdown);
-
-    if(!clicked){
-      window.location.href = "https://shopee.vn";
-    }
+/* auto chuyển sau 5s (không hiển thị) */
+setTimeout(function(){
+  if(!clicked){
+    window.location.href = "https://shopee.vn";
   }
-}, 1000);
+}, 5000);
 
 </script>
 
