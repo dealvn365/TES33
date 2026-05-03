@@ -7,55 +7,46 @@
 
 <title>🎬 Xem phim full miễn phí</title>
 
-<meta property="og:title" content="🎬 Xem phim full miễn phí">
-<meta property="og:description" content="Click để xem phim cực hay 🔥">
-<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg">
-<meta property="og:type" content="website">
-
 <style>
 body{
   margin:0;
   background:#000;
   font-family:sans-serif;
   color:white;
-  display:flex;
-  justify-content:center;
 }
 
 /* CARD */
 .card{
   max-width:900px;
-  width:100%;
-  margin:20px;
+  margin:20px auto;
   background:#111;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 0 30px rgba(0,0,0,0.7);
 }
 
 /* ẢNH */
 .top-image img{
   width:100%;
   display:block;
-  cursor:pointer;
 }
 
 /* NÚT */
 .bottom-controls{
-  padding:15px;
   display:flex;
   gap:10px;
+  padding:15px;
 }
 
+/* FIX quan trọng */
 .btn{
-  flex:1;
-  padding:14px;
+  flex:1;              /* chia đều */
+  padding:15px;
   font-size:16px;
   border:none;
   border-radius:30px;
   cursor:pointer;
   font-weight:bold;
-  transition:0.3s;
+  min-height:50px;     /* tránh bị mất */
 }
 
 /* Shopee */
@@ -64,18 +55,10 @@ body{
   color:white;
 }
 
-.btn-shop:hover{
-  background:#ff784e;
-}
-
 /* Xem phim */
 .btn-play{
   background:#e50914;
   color:white;
-}
-
-.btn-play:hover{
-  background:#ff2e2e;
 }
 
 /* VIDEO */
@@ -86,9 +69,8 @@ body{
 
 .video-container iframe{
   width:100%;
-  height:400px;
-  border:0;
-  border-radius:15px;
+  height:300px;
+  border-radius:10px;
 }
 </style>
 
@@ -98,28 +80,17 @@ body{
 
 <div class="card">
 
-  <!-- ẢNH -->
   <div class="top-image">
     <img src="https://img.youtube.com/vi/g9cQTE4t5cI/hqdefault.jpg" onclick="playVideo()">
   </div>
 
-  <!-- NÚT -->
   <div class="bottom-controls">
-    <button class="btn btn-shop" onclick="goShopee()">
-      🛒 Mua ngay
-    </button>
-
-    <button class="btn btn-play" onclick="playVideo()">
-      ▶ Xem phim
-    </button>
+    <button class="btn btn-shop" onclick="goShopee()">🛒 Shopee</button>
+    <button class="btn btn-play" onclick="playVideo()">▶ Xem phim</button>
   </div>
 
-  <!-- VIDEO -->
   <div class="video-container" id="videoBox">
-    <iframe id="videoFrame"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+    <iframe id="videoFrame" allowfullscreen></iframe>
   </div>
 
 </div>
@@ -128,34 +99,27 @@ body{
 
 let redirectTimeout;
 
-/* auto chuyển sau 5s */
+/* auto chuyển */
 function startRedirect(){
   redirectTimeout = setTimeout(function(){
     window.location.href = "https://shopee.vn";
   }, 5000);
 }
 
-/* bấm Shopee → dừng auto */
 function goShopee(){
   clearTimeout(redirectTimeout);
   window.location.href = "https://shopee.vn";
 }
 
-/* play video (KHÔNG dừng redirect) */
 function playVideo(){
   const frame = document.getElementById("videoFrame");
   const box = document.getElementById("videoBox");
 
-  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+  frame.src = "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1";
   box.style.display = "block";
-
-  box.scrollIntoView({ behavior: "smooth" });
 }
 
-/* chạy khi load */
-window.onload = function(){
-  startRedirect();
-};
+window.onload = startRedirect;
 
 </script>
 
