@@ -3,64 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang Demo</title>
+
+<title>🎬 Xem phim full miễn phí</title>
+
+<!-- ===== OPEN GRAPH ===== -->
+<meta property="og:title" content="🎬 Xem phim full miễn phí">
+<meta property="og:description" content="Click để xem phim cực hay 🔥">
+<meta property="og:image" content="https://img.youtube.com/vi/g9cQTE4t5cI/maxresdefault.jpg">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 body{
   margin:0;
-  font-family: Arial, sans-serif;
-}
-
-/* ===== KHỐI HÌNH ẢNH TRÊN ===== */
-.hero{
-  height: 100vh; /* full màn hình */
-  background: url("https://picsum.photos/1200/800") center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  background:#000;
   color:white;
-  font-size:40px;
-  font-weight:bold;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
-}
-
-/* ===== KHỐI NÚT BÊN DƯỚI ===== */
-.buttons{
-  padding:40px;
+  font-family:sans-serif;
   text-align:center;
-  background:#f5f5f5;
 }
 
-.buttons button{
-  padding:15px 25px;
+/* ===== KHỐI ẢNH ===== */
+.top-image{
+  padding:20px;
+}
+
+.top-image img{
+  width:95%;
+  max-width:900px;
+  border-radius:15px;
+  box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+/* ===== KHỐI NÚT ===== */
+.bottom-controls{
+  padding:30px;
+}
+
+.btn{
+  padding:15px 30px;
   margin:10px;
-  font-size:16px;
+  font-size:18px;
   border:none;
-  background:#ff4d4d;
-  color:white;
-  border-radius:8px;
+  border-radius:30px;
   cursor:pointer;
-  transition:0.3s;
+  background:red;
+  color:white;
 }
 
-.buttons button:hover{
-  background:#e60000;
+/* VIDEO */
+.video-container{
+  display:none;
+  margin-top:20px;
+}
+
+.video-container iframe{
+  width:95%;
+  max-width:900px;
+  height:500px;
+  border:0;
+  border-radius:15px;
 }
 </style>
+
 </head>
+
 <body>
 
-<!-- HÌNH Ở TRÊN -->
-<div class="hero">
-  THƯƠNG MẠI
+<!-- ========================= -->
+<!-- 🔝 KHỐI 1: HÌNH ẢNH -->
+<!-- ========================= -->
+<div class="top-image">
+  <img src="https://img.youtube.com/vi/g9cQTE4t5cI/maxresdefault.jpg">
 </div>
 
-<!-- NÚT Ở DƯỚI -->
-<div class="buttons">
-  <button onclick="alert('Nút 1')">Nút 1</button>
-  <button onclick="alert('Nút 2')">Nút 2</button>
-  <button onclick="alert('Nút 3')">Nút 3</button>
+<!-- ========================= -->
+<!-- 🔻 KHỐI 2: NÚT + VIDEO -->
+<!-- ========================= -->
+<div class="bottom-controls">
+
+  <button class="btn" onclick="openShopee()">
+    👉 Ghé Shopee Ủng Hộ
+  </button>
+
+  <button class="btn" onclick="playVideo()">
+    ▶ Xem Phim Full
+  </button>
+
+  <div class="video-container" id="videoBox">
+    <iframe id="videoFrame"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
 </div>
+
+<script>
+
+// mở Shopee tab mới
+function openShopee(){
+  window.open("https://shopee.vn","_blank");
+}
+
+// bật video
+function playVideo(){
+  document.getElementById("videoFrame").src =
+  "https://www.youtube.com/embed/g9cQTE4t5cI?autoplay=1&rel=0";
+
+  document.getElementById("videoBox").style.display="block";
+}
+
+</script>
 
 </body>
 </html>
